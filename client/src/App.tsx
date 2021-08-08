@@ -1,8 +1,8 @@
-import { useState } from "react";
 import Login from "./components/Login/Login";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App:React.FC = () => {
-  const [id, setId] = useState<string>("")
+  const [id, setId] = useLocalStorage("key")
   return (
     <div className="App">
       <h1>{id}</h1>
