@@ -1,8 +1,9 @@
 import Sidebar from "../Sidebar"
-const Dashboard = () => {
+import { IdProp } from "../../interfaces/idInterface"
+const Dashboard:React.FC<IdProp> = ({id}) => {
   return (
-    <div>
-      <Sidebar />
+    <div className='d-flex' style={{ height: "100vh"}}>
+      <Sidebar id={id}/>
     </div>
   )
 }

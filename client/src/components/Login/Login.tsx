@@ -1,14 +1,11 @@
 import { FormEvent, useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { generateRandomString } from '../../helpers';
+import { SetIdProp } from '../../interfaces/idInterface'
 import "./login.css"
 
-interface Prop {
-  setId: (id:string) => void
-}
 
-
-const Login:React.FC<Prop> = ({setId}) => {
+const Login:React.FC<SetIdProp> = ({setId}) => {
   const idRef = useRef<HTMLInputElement>(null)
 
   const createNewId = () => {
