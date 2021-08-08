@@ -1,9 +1,12 @@
-import './App.css';
+import { useState } from "react";
+import Login from "./components/Login/Login";
 
-function App() {
+const App:React.FC = () => {
+  const [id, setId] = useState<string>("")
   return (
     <div className="App">
-      HELLO
+      <h1>{id}</h1>
+      <Login setId={setId} />
     </div>
   );
 }
