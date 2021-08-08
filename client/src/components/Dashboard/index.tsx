@@ -1,7 +1,8 @@
+import Sidebar from "../Sidebar"
 const Dashboard = () => {
   return (
     <div>
-      Hello From Dashboard
+      <Sidebar />
     </div>
   )
 }
