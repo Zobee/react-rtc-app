@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Tab, Nav } from "react-bootstrap" 
+import { Tab, Nav, Button, Modal } from "react-bootstrap" 
 import Contacts from "../Contacts";
 import Conversations from "../Conversations";
 import { IdProp } from '../../interfaces/idInterface'
 import './sidebar.css'
+import NewConversationModal from "../NewConversationModal";
+import NewContactModal from "../NewContactModal";
 
 const CONVERSATION_KEY = "conversations";
 const CONTACT_KEY = "contacts"
 
 const Sidebar:React.FC<IdProp> = ({id}) => {
   const [activeKey, setActiveKey] = useState<string>(CONVERSATION_KEY)
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const openModal = () => setModalOpen(true)
+  const closeModal = () => setModalOpen(false)
+
+  const convoSectionOpen = activeKey === CONVERSATION_KEY;
   return (
     <div className='sidebar-container'>
       <Tab.Container activeKey={activeKey}>
@@ -29,10 +37,17 @@ const Sidebar:React.FC<IdProp> = ({id}) => {
             <Contacts />
           </Tab.Pane>
         </Tab.Content>
-        <div>
-          Your ID: <span>{id}</span>
+        <div className='p-2 border-top border-right small'>
+          Your ID: <span className="text-muted">{id}</span>
         </div>
+        <Button className='rounded-0' onClick={openModal}>
+          New {convoSectionOpen ? "Conversation" : "Contact"}
+        </Button>
       </Tab.Container>
+
+      <Modal show={modalOpen} onHide={closeModal}>
+        {convoSectionOpen ? <NewConversationModal /> : <NewContactModal />}
+      </Modal>
     </div>
   )
 }
